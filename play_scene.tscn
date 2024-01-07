@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://m86p043xirou"]
+
+[ext_resource type="Script" path="res://play_scene.gd" id="1_7r2eu"]
+[ext_resource type="PackedScene" uid="uid://bjuet4d8go0hc" path="res://Arm.tscn" id="1_cwpg8"]
+[ext_resource type="PackedScene" uid="uid://c33evqngls3kj" path="res://Swan.tscn" id="2_105ih"]
+[ext_resource type="PackedScene" uid="uid://7g5y7n0hbvoh" path="res://HUD.tscn" id="4_nhugj"]
+
+[node name="Play Scene" type="Node"]
+script = ExtResource("1_7r2eu")
+
+[node name="CanvasLayer" parent="." instance=ExtResource("4_nhugj")]
+
+[node name="Arm" parent="." instance=ExtResource("1_cwpg8")]
+
+[node name="Swan" parent="." instance=ExtResource("2_105ih")]
+
+[connection signal="hit" from="Arm" to="." method="_on_arm_hit"]
+[connection signal="hit" from="Arm" to="CanvasLayer" method="_on_arm_hit"]
+[connection signal="hit" from="Swan" to="." method="_on_swan_hit"]

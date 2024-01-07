@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://7g5y7n0hbvoh"]
+
+[ext_resource type="Script" path="res://HUD.gd" id="1_ycmd8"]
+[ext_resource type="Texture2D" uid="uid://cbq6il3ekx1xv" path="res://art/chef_1_life.png" id="2_ixky6"]
+[ext_resource type="Texture2D" uid="uid://b0b7ekvutexxq" path="res://art/chef_2_lives.png" id="3_42417"]
+[ext_resource type="Texture2D" uid="uid://tyb4bor7hc2g" path="res://art/chef_3_lives.png" id="4_yyog3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_37wpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_yyog3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_42417")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ixky6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_ycmd8")
+
+[node name="Score" type="Label" parent="."]
+offset_left = 841.0
+offset_top = 2.0
+offset_right = 1002.0
+offset_bottom = 74.0
+text = "Score"
+
+[node name="ButcherLives" type="AnimatedSprite2D" parent="."]
+position = Vector2(556, 617)
+scale = Vector2(0.444444, 0.505556)
+sprite_frames = SubResource("SpriteFrames_37wpn")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 132.0
+offset_bottom = 43.0
+text = "KILL HIM"

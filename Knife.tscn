@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu71imkxs2vdm"]
+
+[ext_resource type="Script" path="res://knife.gd" id="1_ndamc"]
+[ext_resource type="Texture2D" uid="uid://cs4yoyl35llml" path="res://art/knife.png" id="2_dqhct"]
+[ext_resource type="Texture2D" uid="uid://b1npjf0h2t56" path="res://art/explode.png" id="3_kggdq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xa0rw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dqhct")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kggdq")
+}],
+"loop": true,
+"name": &"movement",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yc1a2"]
+radius = 34.0
+height = 138.0
+
+[node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2(-1, 0)
+collision_layer = 4
+gravity_scale = 0.0
+lock_rotation = true
+max_contacts_reported = 1
+contact_monitor = true
+script = ExtResource("1_ndamc")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(59, 379.718)
+rotation = -0.726286
+scale = Vector2(0.123414, 0.132552)
+sprite_frames = SubResource("SpriteFrames_xa0rw")
+animation = &"movement"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(60, 379)
+shape = SubResource("CapsuleShape2D_yc1a2")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(359.5, 364)
+scale = Vector2(35.85, 36.4)
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

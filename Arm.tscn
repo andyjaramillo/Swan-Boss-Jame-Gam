@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjuet4d8go0hc"]
+
+[ext_resource type="Script" path="res://Arm.gd" id="1_3tsp8"]
+[ext_resource type="Texture2D" uid="uid://csth6mju1fvqw" path="res://art/arm.jpg" id="2_2kgjk"]
+[ext_resource type="Texture2D" uid="uid://dv8xhxjmkfcfs" path="res://art/arm_empty.jpg" id="3_yvwnf"]
+[ext_resource type="Texture2D" uid="uid://dvrkmm01whu2f" path="res://art/arm_hurt.jpg" id="4_xnps6"]
+[ext_resource type="Texture2D" uid="uid://b1npjf0h2t56" path="res://art/explode.png" id="5_ah5mc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_twvpk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o7hs8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_2kgjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_yvwnf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xnps6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ah5mc")
+}],
+"loop": true,
+"name": &"got_hit",
+"speed": 5.0
+}]
+
+[node name="Arm" type="Area2D"]
+position = Vector2(93, 625)
+scale = Vector2(0.3, 0.3)
+collision_mask = 3
+script = ExtResource("1_3tsp8")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(29, 29)
+shape = SubResource("CapsuleShape2D_twvpk")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_o7hs8")
+animation = &"got_hit"
+frame_progress = 0.454364
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]
